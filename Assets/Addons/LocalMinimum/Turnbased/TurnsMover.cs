@@ -19,45 +19,45 @@ namespace LocalMinimum.TurnBased
             this.grid = grid;
         }
 
-        public void Move(ITurnsActive turnsActive, GridPos source, GridPos target, AnimationCurve planarAnimation, Action callback)
+        public void Move(ITurnsActive turnsActive, Coordinate source, Coordinate target, AnimationCurve planarAnimation, Action callback)
         {
             Coroutine c = StartCoroutine(Animate(turnsActive, source, target, planarAnimation, noNormalAnimation, 1, 1, 0, 0, callback));
             movers[turnsActive] = c;
         }
 
-        public void Move(ITurnsActive turnsActive, GridPos source, GridPos target, AnimationCurve planarAnimation, int turns, Action callback)
+        public void Move(ITurnsActive turnsActive, Coordinate source, Coordinate target, AnimationCurve planarAnimation, int turns, Action callback)
         {
             Coroutine c = StartCoroutine(Animate(turnsActive, source, target, planarAnimation, noNormalAnimation, 1, turns, 0, 0, callback));
             movers[turnsActive] = c;
         }
 
-        public void Move(ITurnsActive turnsActive, GridPos source, GridPos target, AnimationCurve planarAnimation, int turns, float delayStartTurnFraction, float preemptiveEndTurnFraction, Action callback)
+        public void Move(ITurnsActive turnsActive, Coordinate source, Coordinate target, AnimationCurve planarAnimation, int turns, float delayStartTurnFraction, float preemptiveEndTurnFraction, Action callback)
         {
             Coroutine c = StartCoroutine(Animate(turnsActive, source, target, planarAnimation, noNormalAnimation, 1, turns, delayStartTurnFraction, preemptiveEndTurnFraction, callback));
             movers[turnsActive] = c;
         }
 
-        public void Move(ITurnsActive turnsActive, GridPos source, GridPos target, AnimationCurve planarAnimation, AnimationCurve normalAnimation, Action callback)
+        public void Move(ITurnsActive turnsActive, Coordinate source, Coordinate target, AnimationCurve planarAnimation, AnimationCurve normalAnimation, Action callback)
         {
 
             Coroutine c = StartCoroutine(Animate(turnsActive, source, target, planarAnimation, normalAnimation, 1, 1, 0, 0, callback));
             movers[turnsActive] = c;
         }
 
-        public void Move(ITurnsActive turnsActive, GridPos source, GridPos target, AnimationCurve planarAnimation, AnimationCurve normalAnimation, float normalHeight, Action callback)
+        public void Move(ITurnsActive turnsActive, Coordinate source, Coordinate target, AnimationCurve planarAnimation, AnimationCurve normalAnimation, float normalHeight, Action callback)
         {
 
             Coroutine c = StartCoroutine(Animate(turnsActive, source, target, planarAnimation, normalAnimation, normalHeight, 1, 0, 0, callback));
             movers[turnsActive] = c;
         }
 
-        public void Move(ITurnsActive turnsActive, GridPos source, GridPos target, AnimationCurve planarAnimation, AnimationCurve normalAnimation, float normalHeight, int turns, Action callback)
+        public void Move(ITurnsActive turnsActive, Coordinate source, Coordinate target, AnimationCurve planarAnimation, AnimationCurve normalAnimation, float normalHeight, int turns, Action callback)
         {
             Coroutine c = StartCoroutine(Animate(turnsActive, source, target, planarAnimation, normalAnimation, normalHeight, turns, 0, 0, callback));
             movers[turnsActive] = c;
         }
 
-        public void Move(ITurnsActive turnsActive, GridPos source, GridPos target, AnimationCurve planarAnimation, AnimationCurve normalAnimation, float normalHeight, int turns, float delayStartTurnFraction, float preemptiveEndTurnFraction, Action callback)
+        public void Move(ITurnsActive turnsActive, Coordinate source, Coordinate target, AnimationCurve planarAnimation, AnimationCurve normalAnimation, float normalHeight, int turns, float delayStartTurnFraction, float preemptiveEndTurnFraction, Action callback)
         {
             Coroutine c = StartCoroutine(Animate(turnsActive, source, target, planarAnimation, normalAnimation, normalHeight, turns, delayStartTurnFraction, preemptiveEndTurnFraction, callback));
             movers[turnsActive] = c;
@@ -79,7 +79,7 @@ namespace LocalMinimum.TurnBased
         bool debugging = true;
 
         IEnumerator<WaitForSeconds> Animate(
-            ITurnsActive turnsActive, GridPos source, GridPos target,
+            ITurnsActive turnsActive, Coordinate source, Coordinate target,
             AnimationCurve planarAnimation, AnimationCurve normalAnimation,
             float normalHeight, int turns, float delayStartTurnFraction, float preemptiveEndTurnFraction, Action callback)
         {

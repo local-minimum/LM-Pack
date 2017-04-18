@@ -6,7 +6,7 @@ using UnityEditor;
 namespace LocalMinimum.Grid
 {
 
-    [CustomPropertyDrawer(typeof(GridPos))]
+    [CustomPropertyDrawer(typeof(Coordinate))]
     public class GridPosDrawer : PropertyDrawer
     {
 

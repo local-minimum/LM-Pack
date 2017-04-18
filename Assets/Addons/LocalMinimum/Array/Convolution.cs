@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System;
 
+using LocalMinimum.Grid;
+
 namespace LocalMinimum.Arrays
 {
     public enum EdgeCondition {Constant, Valid};

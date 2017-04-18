@@ -7,11 +7,11 @@ namespace LocalMinimum.Grid
 
     public interface IGridder
     {
-        GridPos Coordinate(Vector3 position, Space space);
-        Vector3 Position(GridPos coordinate, Space space);
+        Coordinate Coordinate(Vector3 position, Space space);
+        Vector3 Position(Coordinate coordinate, Space space);
         Vector3 GetWorldPosition(Vector3 position);
 
-        bool IsValidPosition(GridPos pos);
+        bool IsValidPosition(Coordinate pos);
 
         int Width { get; }
         int Height { get; }

@@ -2,32 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using LocalMinimum.Grid;
+
 namespace LocalMinimum.Arrays
 {
 
     public enum Neighbourhood { Cross, Eight };
 
-    /// <summary>
-    /// Minimal x, y coordinate struct with no functionality.
-    /// 
-    /// For more features, GridPos has equal structure and implicit casts exists.
-    /// </summary>
-    public struct Coordinate
-    {
-        public int x;
-        public int y;
-
-        public Coordinate(int x, int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-
-        public static implicit operator Grid.GridPos(Coordinate coord)
-        {
-            return new Grid.GridPos(coord.x, coord.y);
-        }
-    }
 
     public static class ArrayRegions
     {

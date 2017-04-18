@@ -17,14 +17,6 @@ namespace LocalMinimum.Import
         int targetY { get; }
     }
 
-    public enum Direction
-    {
-        North,
-        East,
-        West,
-        South
-    }
-
     public interface ITile
     {
         int Col { get; set; }

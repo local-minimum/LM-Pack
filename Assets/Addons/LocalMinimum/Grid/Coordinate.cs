@@ -5,26 +5,19 @@ using LocalMinimum.Arrays;
 namespace LocalMinimum.Grid
 {
 
-    public enum Direction { None, North, South, West, East, NorthWest, SouthWest, SouthEast, NorthEast };
-
     [System.Serializable]
-    public struct GridPos
+    public struct Coordinate
     {
         public int x;
         public int y;
 
-        public GridPos(int x, int y)
+        public Coordinate(int x, int y)
         {
             this.x = x;
             this.y = y;
         }
 
-        static public implicit operator Arrays.Coordinate(GridPos pos)
-        {
-            return new Arrays.Coordinate(pos.x, pos.y);
-        }
-
-        static public implicit operator int[](GridPos pos)
+        static public implicit operator int[](Coordinate pos)
         {
             return new int[] { pos.x, pos.y };
         }
@@ -49,24 +42,24 @@ namespace LocalMinimum.Grid
             y = -y;
         }
 
-        public static bool operator ==(GridPos a, GridPos b)
+        public static bool operator ==(Coordinate a, Coordinate b)
         {
             return a.x == b.x && a.y == b.y;
         }
 
-        public static bool operator !=(GridPos a, GridPos b)
+        public static bool operator !=(Coordinate a, Coordinate b)
         {
             return a.x != b.x || a.y != b.y;
         }
 
-        public static GridPos operator +(GridPos a, GridPos b)
+        public static Coordinate operator +(Coordinate a, Coordinate b)
         {
-            return new GridPos(a.x + b.x, a.y + b.y);
+            return new Coordinate(a.x + b.x, a.y + b.y);
         }
 
-        public static GridPos operator -(GridPos a, GridPos b)
+        public static Coordinate operator -(Coordinate a, Coordinate b)
         {
-            return new GridPos(a.x - b.x, a.y - b.y);
+            return new Coordinate(a.x - b.x, a.y - b.y);
         }
 
         public override string ToString()
@@ -100,75 +93,75 @@ namespace LocalMinimum.Grid
             }
         }
 
-        public GridPos West
+        public Coordinate West
         {
             get
             {
-                return new GridPos(x - 1, y);
+                return new Coordinate(x - 1, y);
             }
         }
 
-        public GridPos East
+        public Coordinate East
         {
             get
             {
-                return new GridPos(x + 1, y);
+                return new Coordinate(x + 1, y);
             }
         }
 
-        public GridPos North
+        public Coordinate North
         {
             get
             {
-                return new GridPos(x, y - 1);
+                return new Coordinate(x, y - 1);
             }
         }
 
-        public GridPos South
+        public Coordinate South
         {
             get
             {
-                return new GridPos(x, y + 1);
+                return new Coordinate(x, y + 1);
             }
         }
 
-        public GridPos NorthWest
+        public Coordinate NorthWest
         {
             get
             {
-                return new GridPos(x - 1, y - 1);
+                return new Coordinate(x - 1, y - 1);
             }
         }
 
-        public GridPos SouthWest
+        public Coordinate SouthWest
         {
             get
             {
-                return new GridPos(x - 1, y + 1);
+                return new Coordinate(x - 1, y + 1);
             }
         }
 
-        public GridPos SouthEast {
+        public Coordinate SouthEast {
             get
             {
-                return new GridPos(x + 1, y + 1);
+                return new Coordinate(x + 1, y + 1);
             }
         }
 
-        public GridPos NorthEast
+        public Coordinate NorthEast
         {
             get
             {
-                return new GridPos(x + 1, y - 1);
+                return new Coordinate(x + 1, y - 1);
             }
         }
 
-        public static int TaxiCabDistance(GridPos a, GridPos b)
+        public static int TaxiCabDistance(Coordinate a, Coordinate b)
         {
             return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
         }
 
-        public static int ChessBoardDistance(GridPos a, GridPos b)
+        public static int ChessBoardDistance(Coordinate a, Coordinate b)
         {
             return Mathf.Max(Mathf.Abs(a.x - b.x), Mathf.Abs(a.y - b.y));
         }
@@ -189,16 +182,16 @@ namespace LocalMinimum.Grid
             }
         }
 
-        public static int ShortestDimensionDistance(GridPos a, GridPos b)
+        public static int ShortestDimensionDistance(Coordinate a, Coordinate b)
         {
             return Mathf.Min(Mathf.Abs(a.x - b.x), Mathf.Abs(a.y - b.y));
         }
 
-        public GridPos NineNormalized
+        public Coordinate NineNormalized
         {
             get
             {
-                return new GridPos(x > 0 ? 1 : (x < 0 ? -1 : 0), y > 0 ? 1 : (y < 0 ? -1 : 0));
+                return new Coordinate(x > 0 ? 1 : (x < 0 ? -1 : 0), y > 0 ? 1 : (y < 0 ? -1 : 0));
             }
         }
 
@@ -206,7 +199,7 @@ namespace LocalMinimum.Grid
         {
             get
             {
-                GridPos normed = this.NineNormalized;
+                Coordinate normed = this.NineNormalized;
                 if (normed.x < 0)
                 {
                     if (normed.y < 0)
@@ -249,7 +242,7 @@ namespace LocalMinimum.Grid
             return x == 0 && y == 0;
         }
 
-        public IEnumerable<GridPos> GetNeighbours(Neighbourhood neighbourhood)
+        public IEnumerable<Coordinate> GetNeighbours(Neighbourhood neighbourhood)
         {
             for (int x = -1; x < 2; x++)
             {
@@ -264,7 +257,7 @@ namespace LocalMinimum.Grid
                         continue;
                     }
 
-                    yield return new GridPos(this.x + x, this.y + y);
+                    yield return new Coordinate(this.x + x, this.y + y);
                 }
             }
         }
